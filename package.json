@@ -1,0 +1,25 @@
+{
+  "name": "github-gatekeeper",
+  "description": "",
+  "url": "https://github.com/effector-js/effector-proxy",
+  "keywords": [
+    "github",
+    "oauth"
+  ],
+  "scripts": {
+    "start": "now dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/effector-js/effector-proxy"
+  },
+  "author": "Valery Kobzar",
+  "license": "MIT",
+  "contributors": [],
+  "main": "index.html",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@now/node": "^1.0.0"
+  }
+}
