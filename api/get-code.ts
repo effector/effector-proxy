@@ -1,32 +1,31 @@
 import {NowRequest, NowResponse} from '@now/node'
 import  * as https from 'https'
+import axios from 'axios'
 
 
 function getCode(slug, cb) {
-  const reqOptions = {
-    host: 'share.effector.dev',
-    port: 443,
-    path: `/${slug}`,
-    method: 'GET',
-  }
+  const url = `https://share.effector.dev/${slug}`
 
   let body = ''
-  const req = https.request(reqOptions, (res) => {
-    res.setEncoding('utf8')
-    res.on('data', (chunk) => {
-      body += chunk
-    })
-    res.on('end', () => {
-      const regexp = /window\.__code__ = JSON\.parse\(window\.decompress\("(.*)"\)\);\s*<\/script>\s*<link*/
-      const [, code] = regexp.exec(body)
-      cb(null, code ?? '')
-    })
-  })
+  axios.get(url).then((res) => {
+    // res.setEncoding('utf8')
+    // res.on('data', (chunk) => {
+    //   body += chunk
+    // })
+    // res.on('end', () => {
 
-  req.end()
-  req.on('error', (e) => {
-    cb(e.message)
+      const regexp = /window\.__code__ = JSON\.parse\(window\.decompress\("(.*)"\)\);\s*<\/script>\s*<link*/
+      // console.log(res.data)
+      const [, code] = regexp.exec(res.data)
+      cb(null, code || '')
+    // })
   })
+    .catch(e => cb(e))
+  // req.setHeader('content-type', 'text/html')
+  // req.end()
+  // req.on('error', (e) => {
+  //   cb(e.message)
+  // })
 }
 
 export default (req: NowRequest, res: NowResponse) => {

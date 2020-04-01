@@ -2,7 +2,7 @@
   "version": 2,
   "headers": [
     {
-      "source": "/get-code/(.*)",
+      "source": "/api/get-code",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
