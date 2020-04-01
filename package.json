@@ -7,7 +7,7 @@
     "oauth"
   ],
   "scripts": {
-    "start": "now dev"
+    "start": "now dev -l 0.0.0.0:3001"
   },
   "repository": {
     "type": "git",
